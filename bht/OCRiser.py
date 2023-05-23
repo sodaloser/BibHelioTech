@@ -1,14 +1,14 @@
-import os
-import sys
+# import os
+# import sys
 import pytesseract
 from PIL import Image
 from pdf2image import convert_from_path
 
 
-def PDF_OCRiser(current_OCR_folder,PDF_file):
-    '''
+def PDF_OCRiser(current_OCR_folder, PDF_file):
+    """
     Part #1 : Converting PDF to images
-    '''
+    """
 
     # Store all the pages of the PDF in a variable
     pages = convert_from_path(PDF_file, dpi=600)
@@ -58,7 +58,7 @@ def PDF_OCRiser(current_OCR_folder,PDF_file):
         filename = current_OCR_folder+"/"+"page_" + str(i) + ".jpg"
 
         # Recognize the text as string in image using pytesserct
-        text = str(((pytesseract.image_to_string(Image.open(filename)))))
+        text = str(pytesseract.image_to_string(Image.open(filename)))
 
         # The recognized text is stored in variable text
         # Any string processing may be applied on text

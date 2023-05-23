@@ -14,5 +14,4 @@ def GROBID_generation(pdf_path):
     client.process("processFulltextDocument", input_path=pdf_path, output=pdf_path, n=20)
     tei_xml_files = glob.glob("*.tei.xml", root_dir=pdf_path)
     if len(tei_xml_files) == 0:
-        raise BhtResultError(f"No tei fles found in {pdf_path}")
-#
+        raise BhtResultError(f"No tei files found in {pdf_path}")

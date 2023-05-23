@@ -15,9 +15,8 @@ from bht_config import yml_settings
 def run_dir(_base_pdf_dir):
     for folders_or_pdf in os.listdir(_base_pdf_dir):
         folders_or_pdf_path = os.path.join(_base_pdf_dir, folders_or_pdf)
-        if folders_or_pdf.endswith(
-                ".pdf"):  # If '.pdf' on "Papers" folder --> paper not treated --> processing paper treatment.
-            # create the directory under the same name than the paper.
+        if folders_or_pdf.endswith(".pdf"):  # If '.pdf' on "Papers" folder --> paper not treated --> processing paper treatment.
+            # create the directory under the same name as the paper.
             os.makedirs(os.path.join(_base_pdf_dir, folders_or_pdf.replace(".pdf", "")))
             # move '.pdf' to his directory.
             shutil.move(folders_or_pdf_path, os.path.join(_base_pdf_dir, folders_or_pdf.replace(".pdf", "")))

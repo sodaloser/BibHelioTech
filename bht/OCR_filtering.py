@@ -1,7 +1,8 @@
 import re
 
+
 def ocr_filter(current_OCR_folder):
-    in_file = open(current_OCR_folder+"/"+"out_text.txt", "r") # open the txt file resulting from OCR
+    in_file = open(current_OCR_folder+"/"+"out_text.txt", "r")  # open the txt file resulting from OCR
     content = in_file.read()
 
     # content = re.sub(r'References', 'References\n', content)
@@ -14,7 +15,7 @@ def ocr_filter(current_OCR_folder):
     content = re.sub('Published.*', '', content)
     content = re.sub('Suggested.*', '', content)
 
-    content = re.sub("\n{1,5}"," ", content) # remove all \n
+    content = re.sub("\n{1,5}", " ", content)  # remove all \n
 
     content = re.sub(r"UT ", r" UT ", content)  # replace "22:02UT" by "22:02 UT"
     content = re.sub(r" UT ", r"UTC", content)  # replace "22:02 UT" by "22:02 UTC"
@@ -43,11 +44,11 @@ def ocr_filter(current_OCR_folder):
 
     content = content.split('. ')
 
-    open(current_OCR_folder+"/"+"out_filtered_text.txt", 'w').close() # erase previous file
+    open(current_OCR_folder+"/"+"out_filtered_text.txt", 'w').close()  # erase previous file
     out_file = open(current_OCR_folder+"/"+"out_filtered_text.txt", "a+")
     for lines in content:
-        lines = re.sub("((THE ASTROPHYSICAL JOURNAL(?: LETTER)?)(.*)(([0-9]{1,2}) ((?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|(Nov|Dec)(?:ember)?)) ([0-9]{4})))","",lines)
-        lines = re.sub(" Copyright ([0-9]{4})","",lines)
+        lines = re.sub("((THE ASTROPHYSICAL JOURNAL(?: LETTER)?)(.*)(([0-9]{1,2}) ((?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|(Nov|Dec)(?:ember)?)) ([0-9]{4})))", "", lines)
+        lines = re.sub(" Copyright ([0-9]{4})", "", lines)
         out_file.write(lines)
         out_file.write(".\n")
 
@@ -57,8 +58,6 @@ def ocr_filter(current_OCR_folder):
     out_file = open(current_OCR_folder + "/" + "out_filtered_text.txt", "r")
     content = out_file.read()
     out_file.close()
-
-
 
     # content = content[int(len(content) * (10 / 100)):int(len(content) * (96 / 100))]
     #
